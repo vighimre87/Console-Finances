@@ -86,3 +86,22 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+let totalMonths = finances.length;
+console.log(totalMonths);
+let totalProfit = 0;
+for (let i =0; i<finances.length;i++) {
+    totalProfit+=finances[i][1];
+}
+// changes starting from 0, so finances and changes has got the same length
+let changeValue = 0;
+let changes = [finances[0]];
+for (let i = 1; i<finances.length; i++) {
+    changeValue = finances[i+1][1]-finances[i][1];
+    changes.push(changeValue);
+}
+console.log(changes);
+let average = 0;
+for (let i = 0; i<changes.length;i++) {
+
+}
