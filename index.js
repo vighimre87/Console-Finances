@@ -87,33 +87,49 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
+// The total number of months included in the dataset
 let totalMonths = finances.length;
-console.log(totalMonths);
+
+// The total amount of profit/losses over the entire period
 let totalProfit = 0;
 for (let i =0; i<finances.length;i++) {
     totalProfit+=finances[i][1];
 }
-// changes counting from 0, so finances and changes arrays has got the same length
+
+// The average of the changes in Profit/Losses over the entire period
+// First we need to track the changes in an array over the entire period
+// The changes variable considers the first month counting from 0 at the beginning of the first month in the entire period,
+// so finances and changes arrays have got the same length
+// and finances and changes arrays has got the same value for the first month
 let changeValue = 0;
 let firstElementOfChanges = finances[0][1];
 let changes = [];
 changes.push(firstElementOfChanges);
+// We need to subtract 1 from finances.length,
+// otherwise the foor loop would not be able the reach the i+1th element for the last element
 for (let i = 0; i<finances.length-1; i++) {
     changeValue = finances[i+1][1]-finances[i][1];
     changes.push(changeValue);
 }
-console.log(changes);
+// Then wee need to find the average value in the changes array
 let averageChange = 0;
 for (let i= 0; i<changes.length;i++) {
     averageChange+=changes[i];
 }
-averageChange = Math.round(averageChange / changes.length);
-console.log(averageChange);
+averageChange = Math.round(((averageChange / changes.length)+Number.EPSILON)*100) / 100;
+
+// Then we need to find the greatest value in the changes array and match it with the date in the finances array
+// Because both arrays have got the same length and order the index number will be the same
 let greatestProfit = [finances[changes.indexOf(Math.max(...changes))][0] , Math.max(...changes)];
+
+// Then we need to find the greatest loss over the entire period with the same approach
 let greatestLoss = [finances[changes.indexOf(Math.min(...changes))][0], Math.min(...changes)];
-console.log(greatestProfit);
-console.log(finances.indexOf(Math.max(...changes)));
-console.log(changes.indexOf(Math.max(...changes)));
-console.log(greatestLoss);
-console.log(finances.indexOf(Math.min(...changes)));
-console.log(changes.indexOf(Math.min(...changes)));
+
+// Print statements
+console.log("Financial Analysis");
+console.log("------------------------");
+console.log("Total Months: " + totalMonths);
+console.log("Total Profit: $" + totalProfit);
+console.log("Average Change: $" + averageChange);
+console.log("Greatest Increase in Profits: " + greatestProfit[0] + " ($" + greatestProfit[1] + ")");
+console.log("Greatest Decrease in Profits: " + greatestLoss[0] + " ($" + greatestLoss[1] + ")");
