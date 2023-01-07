@@ -96,11 +96,13 @@ for (let i =0; i<finances.length;i++) {
     totalProfit+=finances[i][1];
 }
 
-// The average of the changes in Profit/Losses over the entire period
-// First we need to track the changes in an array over the entire period
-// The changes variable considers the first month counting from 0 at the beginning of the first month in the entire period,
-// so finances and changes arrays have got the same length
-// and finances and changes arrays has got the same value for the first month
+/*
+The average of the changes in Profit/Losses over the entire period
+First we need to track the changes in an array over the entire period
+The changes variable considers the first month counting from 0 at the beginning of the first month in the entire period,
+so finances and changes arrays have got the same length
+and finances and changes arrays has got the same value for the first month
+*/
 let changeValue1 = 0;
 let firstElementOfChanges1 = finances[0][1];
 let changes1 = [];
@@ -142,31 +144,26 @@ console.log("---------------------------------");
 ------------------------------------------------------------------------------
 */
 
-
-// There is another approach to tackle this problem based on that
-// we don't consider the first month's value in the finances array as a change
-// so the changes array this time contains 1 less element than the finances
-// The average of the changes in Profit/Losses over the entire period
-// First we need to track the changes in an array over the entire period
-// The changes variable doesn't consider the first month counting from 0 at the beginning of the first month in the entire period,
-// so finances is 1 element longer than changes arrays
+/*
+There is another approach to tackle this problem based on that
+we don't consider the first month's value in the finances array as a change
+so the changes array this time contains 1 less element than the finances
+*/
 let changeValue2 = 0;
 let changes2 = [];
-// We need to subtract 1 from finances.length,
-// otherwise the foor loop would not be able the reach the i+1th element for the last element
+
 for (let i = 0; i<finances.length-1; i++) {
     changeValue2 = finances[i+1][1]-finances[i][1];
     changes2.push(changeValue2);
 }
-// Then wee need to find the average value in the changes array
+
 let averageChange2 = 0;
 for (let i= 0; i<changes2.length;i++) {
     averageChange2+=changes2[i];
 }
 averageChange2 = Math.round(((averageChange2 / changes2.length)+Number.EPSILON)*100) / 100;
 
-// Then we need to find the greatest value in the changes array and match it with the date in the finances array
-// The array of changes is 1 element shorter than the finances so we need to subtract 1 from the first index of finances
+// The array of changes is 1 element shorter than the finances so we need to add 1 to the first index of finances
 let greatestProfit2 = [finances[changes2.indexOf(Math.max(...changes2))+1][0] , Math.max(...changes2)];
 
 // Then we need to find the greatest loss over the entire period with the same approach
