@@ -93,15 +93,27 @@ let totalProfit = 0;
 for (let i =0; i<finances.length;i++) {
     totalProfit+=finances[i][1];
 }
-// changes starting from 0, so finances and changes has got the same length
+// changes counting from 0, so finances and changes arrays has got the same length
 let changeValue = 0;
-let changes = [finances[0]];
-for (let i = 1; i<finances.length; i++) {
+let firstElementOfChanges = finances[0][1];
+let changes = [];
+changes.push(firstElementOfChanges);
+for (let i = 0; i<finances.length-1; i++) {
     changeValue = finances[i+1][1]-finances[i][1];
     changes.push(changeValue);
 }
 console.log(changes);
-let average = 0;
-for (let i = 0; i<changes.length;i++) {
-
+let averageChange = 0;
+for (let i= 0; i<changes.length;i++) {
+    averageChange+=changes[i];
 }
+averageChange = Math.round(averageChange / changes.length);
+console.log(averageChange);
+let greatestProfit = [finances[changes.indexOf(Math.max(...changes))][0] , Math.max(...changes)];
+let greatestLoss = [finances[changes.indexOf(Math.min(...changes))][0], Math.min(...changes)];
+console.log(greatestProfit);
+console.log(finances.indexOf(Math.max(...changes)));
+console.log(changes.indexOf(Math.max(...changes)));
+console.log(greatestLoss);
+console.log(finances.indexOf(Math.min(...changes)));
+console.log(changes.indexOf(Math.min(...changes)));
