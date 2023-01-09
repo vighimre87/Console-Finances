@@ -130,8 +130,6 @@ let greatestLoss1 = [finances[changes1.indexOf(Math.min(...changes1))][0], Math.
 // Print statements
 console.log("Financial Analysis");
 console.log("------------------------");
-console.log("Considering that the first month is already a change compared to the beginning of the first year in period we will get a different value for the Average Change.");
-console.log("------------------------");
 console.log("Total Months: " + totalMonths);
 console.log("Total Profit: $" + totalProfit);
 console.log("Average Change: $" + averageChange1);
